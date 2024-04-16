@@ -1,0 +1,45 @@
+import random
+
+# Lista de palavras
+palavras = ['python', 'programação', 'computador', 'algoritmo', 'dados', 'inteligência']
+
+# Escolher uma palavra aleatória
+palavra = random.choice(palavras)
+
+# Converter a palavra em uma lista de letras
+letras_palavra = list(palavra)
+
+# Lista para armazenar as letras já adivinhadas
+letras_adivinhadas = []
+
+# Loop principal do jogo
+tentativas = 6
+while tentativas > 0:
+    # Mostrar a palavra atual com letras adivinhadas
+    palavra_atual = ''
+    for letra in letras_palavra:
+        if letra in letras_adivinhadas:
+            palavra_atual += letra
+        else:
+            palavra_atual += '_'
+    print(palavra_atual)
+    
+    # Pedir ao jogador para adivinhar uma letra
+    letra = input('Adivinhe uma letra: ').lower()
+    
+    # Verificar se a letra está na palavra
+    if letra in letras_palavra:
+        print('Correto!')
+        letras_adivinhadas.append(letra)
+    else:
+        print('Incorreto!')
+        tentativas -= 1
+    
+    # Verificar se o jogador ganhou
+    if '_' not in palavra_atual:
+        print('Parabéns! Você ganhou!')
+        break
+
+# Se o jogador usou todas as tentativas
+if tentativas == 0:
+    print('Você perdeu! A palavra era:', palavra)
